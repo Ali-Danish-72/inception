@@ -50,6 +50,7 @@ services:
         - DB_USER=${DB_USER}
         - DB_PASS=${DB_PASS}
         - DB_ROOT_PASS=${DB_ROOT_PASS}
+        - DB_CONF_ROUTE=${DB_CONF_ROUTE}
     restart: always
     volumes:
       - mariadb:/var/lib/mysql
@@ -69,7 +70,8 @@ volumes:
     driver_opts:
       type: 'nfs'
       o: 'bind'
-      device: './data/wordpress'
+      # device: '/home/mdanish/data/wordpress'
+      device: '../data/wordpress'
 
   mariadb:
     name: mariadb
@@ -77,4 +79,5 @@ volumes:
     driver_opts:
       type: 'nfs'
       o: 'bind'
-      device: './data/mariadb'
+      # device: '/home/mdanish/data/mariadb'
+      device: '../data/mariadb'

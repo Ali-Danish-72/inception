@@ -7,7 +7,7 @@ wp config create  --allow-root --path=$WP_ROUTE --dbname=$DB_NAME --dbuser=$DB_U
 
 if ! wp core is-installed --allow-root --path=$WP_ROUTE; then
 
-	wp core install --allow-root --url=mdanish.42.fr --title=inception --admin_user=$WP_ADMIN_USER --admin_email=$WP_ADMIN_EMAIL
+	wp core install --allow-root --url=mdanish.42.fr --title=inception --admin_user=$WP_ADMIN_USER --admin_email=$WP_ADMIN_EMAIL --admin_password=$WP_ADMIN_PASS
 	wp user create $WP_USER $WP_EMAIL --allow-root --role=author --user_pass=$WP_PASS
 
 fi
