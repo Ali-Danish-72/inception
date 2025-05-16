@@ -1,10 +1,10 @@
 FROM debian:bullseye
 
-RUN apt-get update --no-install-recommends -y && \
-	apt-get upgrade --no-install-recommends -y && \
-	apt-get install --no-install-recommends -y nginx openssl
+RUN apt-get update && apt-get upgrade --no-install-recommends -y && \
+	apt-get install --no-install-recommends -y nginx openssl && \
+	rm -rf /var/lib/apt/lists/*
 
-COPY ./conf/config.sh /usr/bin/
+COPY ./configuration/config.sh /usr/bin/
 
 RUN chmod +x /usr/bin/config.sh
 

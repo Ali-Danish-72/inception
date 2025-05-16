@@ -1,8 +1,10 @@
 #! /usr/bin/env bash
 
+# Create the SSL certificate for NGINX and directory that will contain it.
 mkdir $CERT_DIR
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT_KEY -out $CERT -subj "/C=AE/ST=Abu Dhabi/L=Abu Dhabi/O=42/OU=Dev/CN=$HOST_NAME"
 
+# Create the NGINX configuration file.
 echo "server {
 	server_name $HOST_URL;
 
@@ -24,4 +26,5 @@ echo "server {
 	}
 }" > $NGINX_CONF;
 
+# Run NGINX.
 nginx -g 'daemon off;'
