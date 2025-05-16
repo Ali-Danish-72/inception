@@ -20,6 +20,7 @@ services:
   wordpress:
     depends_on:
       - mariadb
+      - redis
     container_name: wordpress
     env_file:
       - ./.env
@@ -54,6 +55,20 @@ services:
       - mariadb:/var/lib/mysql
     expose:
       - "3306"
+    networks:
+      - inception
+
+  redis:
+    container_name: redis
+    env_file:
+      - ./.env
+    image: redis:final
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - "6379"
     networks:
       - inception
 
