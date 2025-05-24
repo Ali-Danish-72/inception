@@ -72,6 +72,25 @@ services:
     networks:
       - inception
 
+  vsftpd:
+    depends_on:
+      - wordpress
+    container_name: vsftpd
+    env_file:
+      - ./.env
+    image: vsftpd:final
+    build:
+      context: ./requirements/bonus/vsftpd
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - wordpress:/home/ftpuser/wordpress
+    ports:
+      - "20:20"
+      - "21-30:21-30"
+    networks:
+      - inception
+
 networks:
   inception:
     name: inception
