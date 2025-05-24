@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 
 # Create the SSL certificate for NGINX and directory that will contain it.
-mkdir $CERT_DIR
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT_KEY -out $CERT -subj "/C=AE/ST=Abu Dhabi/L=Abu Dhabi/O=42/OU=Dev/CN=$HOST_NAME"
+mkdir -p $CERT_DIR
+mkdir -p $KEY_DIR
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEY -out $CERT -subj "/C=AE/ST=Abu Dhabi/L=Abu Dhabi/O=42/OU=Dev/CN=$HOST_NAME"
 
 # Create the NGINX configuration file.
 echo "server {
@@ -10,7 +11,7 @@ echo "server {
 
 	listen 443 ssl http2;
 	ssl_certificate $CERT;
-	ssl_certificate_key $CERT_KEY;
+	ssl_certificate_key $KEY;
 	ssl_protocols TLSv1.2 TLSv1.3;
 
 	root $WP_ROUTE;

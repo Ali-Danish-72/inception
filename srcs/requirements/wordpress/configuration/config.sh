@@ -25,8 +25,11 @@ if [ ! -d /run/php ]; then
 	mkdir -p /run/php
 fi
 
-# Give the user that owns the wordpress process access to the volume.
-chown -R www-data:www-data /var/www/html/wordpress/wp-content
+# Give the ftp and wordpress users access to the website as necessary to maintian shared access.
+groupadd ftpuser
+chown -R :ftpuser /var/www/html/wordpress/
+chown -R :www-data /var/www/html/wordpress/wp-content/uploads
+chmod -R 2775 /var/www/html/wordpress/
 
 # Run WordPress.
 php-fpm7.4 -F
