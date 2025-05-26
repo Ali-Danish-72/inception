@@ -7,7 +7,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $KEY -out $CERT -sub
 
 # Create the NGINX configuration file.
 echo "server {
-	server_name $HOST_URL;
+	server_name $HOST_NAME;
 
 	listen 443 ssl http2;
 	ssl_certificate $CERT;

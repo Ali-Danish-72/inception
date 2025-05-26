@@ -10,6 +10,9 @@ if ! wp core is-installed --allow-root --path=$WP_ROUTE; then
 	wp user create $WP_USER $WP_EMAIL --allow-root --role=author --user_pass=$WP_PASS
 fi
 
+# Add the custom static webpage.
+mv /tmp/welcome.html .
+
 # Change the configuration file to enable it to listen from all connections on the port 9000.
 sed -i 's|^listen = .*|listen = 0.0.0.0:9000|' /etc/php/7.4/fpm/pool.d/www.conf
 

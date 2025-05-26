@@ -8,6 +8,8 @@ RUN curl -o /usr/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages
 
 WORKDIR /var/www/html/wordpress
 
+COPY ./tools/welcome.html /tmp/
+
 COPY ./configuration/config.sh /usr/bin/
 
 RUN chmod +x /usr/bin/config.sh
