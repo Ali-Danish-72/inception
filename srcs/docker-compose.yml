@@ -11,9 +11,11 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:${WP_ROUTE}
+      - adminer:${ADMINER_ROUTE}
     ports:
       - "443:443"
+      - "8080:8080"
     networks:
       - inception
 
@@ -30,7 +32,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:${WP_ROUTE}
     expose:
       - "9000"
     networks:
@@ -91,6 +93,26 @@ services:
     networks:
       - inception
 
+  adminer:
+    depends_on:
+      - mariadb
+    container_name: adminer
+    env_file:
+      - ./.env
+    image: adminer:final
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+      args:
+        - ADMINER_ROUTE=${ADMINER_ROUTE}
+    restart: always
+    volumes:
+      - adminer:${ADMINER_ROUTE}
+    expose:
+      - "9000"
+    networks:
+      - inception
+
 networks:
   inception:
     name: inception
@@ -113,3 +135,7 @@ volumes:
       o: 'bind'
       # device: '/home/mdanish/data/mariadb'
       device: '../data/mariadb'
+
+  adminer:
+    name: adminer
+    driver: local
