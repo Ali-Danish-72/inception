@@ -1,4 +1,4 @@
-# Inception (42 Project)
+# Inception
 
 ## 🛠️ Overview
 
