@@ -1,5 +1,4 @@
-#VOLUME_DIRECTORY=/home/mdanish/data
-VOLUME_DIRECTORY=./data
+VOLUME_DIRECTORY=/home/mdanish/data
 
 all: inception
 

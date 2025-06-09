@@ -145,8 +145,7 @@ volumes:
     driver_opts:
       type: 'nfs'
       o: 'bind'
-      # device: '/home/mdanish/data/wordpress'
-      device: '../data/wordpress'
+      device: '/home/mdanish/data/wordpress'
 
   mariadb:
     name: mariadb
@@ -154,8 +153,7 @@ volumes:
     driver_opts:
       type: 'nfs'
       o: 'bind'
-      # device: '/home/mdanish/data/mariadb'
-      device: '../data/mariadb'
+      device: '/home/mdanish/data/mariadb'
 
   adminer:
     name: adminer
