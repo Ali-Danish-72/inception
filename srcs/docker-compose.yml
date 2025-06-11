@@ -88,8 +88,8 @@ services:
     volumes:
       - wordpress:/home/ftpuser/wordpress
     ports:
-      - "20:20"
-      - "21-30:21-30"
+      - "21:21"
+      - "10090-10100:10090-10100"
     networks:
       - inception
 
